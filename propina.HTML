@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Calculadora de Propina (jackson zuluaga)</title>
+
+    <style>
+    body {
+        font-family: Arial, sans-serif;
+        background: #4b0088;
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+
+    .container {
+        background: #2c2c2c;
+        padding: 30px;
+        border-radius: 12px;
+        width: 300px;
+        text-align: center;
+    }
+
+    input, select, button {
+        width: 100%;
+        padding: 10px;
+        margin-top: 15px;
+        border: none;
+        border-radius: 8px;
+        font-size: 16px;
+    }
+
+    button {
+        background: #22c55e;
+        color: white;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background: #16a34a;
+    }
+
+    .resultado {
+        margin-top: 20px;
+        font-size: 18px;
+    }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+    <h1>te ayudo con la propina</h1>
+
+    <input 
+        type="number" 
+        id="cuenta" 
+        placeholder="Valor del total  de la cuenta"
+    >
+
+    <select id="propina">
+        <option value="10">10%</option>
+        <option value="15">15%</option>
+        <option value="20">20%</option>
+    </select>
+
+    <button onclick="calcularPropina()">
+        Calcular
+    </button>
+
+    <div class="resultado" id="resultado"></div>
+    </div>
+
+    <script>
+    function calcularPropina() {
+        const cuenta = parseFloat(document.getElementById('cuenta').value);
+        const porcentaje = parseFloat(document.getElementById('propina').value);
+
+        if (isNaN(cuenta) || cuenta <= 0) {
+        document.getElementById('resultado').innerHTML =
+            "Ingresa un valor válido";
+        return;
+        }
+
+      const propina = cuenta * (porcentaje / 100);
+        const total = cuenta + propina;
+
+        document.getElementById('resultado').innerHTML = `
+        Propina: $${propina.toFixed(2)} <br>
+        Total: $${total.toFixed(2)}
+        `;
+    }
+    </script>
+
+</body>
+</html>
